@@ -56,6 +56,8 @@ class Importer(reader.Reader, importer.ImporterProtocol):
             yield pos
 
     def get_available_cash(self):
+        if not hasattr(self.ofx_account.statement, 'available_cash'):
+            return None
         return self.ofx_account.statement.available_cash
 
     def get_max_transaction_date(self):
